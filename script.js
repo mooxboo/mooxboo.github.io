@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     yesBtn.addEventListener('click', () => {
         const successHTML = `
-            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHNoY2g0am9raW9rNndiaHZkcmNidzY5ejd6bWFheXR2MGh0NnZtOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AgbhG0ZNWDilq/giphy.gif" alt="Cute hug gif" class="gif">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnk2b3U5M2Nhc3hpcGVod3Z6ZW93c3AwOXppYmI1aDluZnd5ODdoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jr9saevgSxACA/giphy.gif" alt="Cute hug gif" class="gif">
             <h1>YEAAYYYY ASIIKKKKK AYCE!!</h1>
             <p style="font-size: 1.2rem; color: #333;">I love you to infinity and beyond Boo Boo Sayang!!</p>
         `;
