@@ -5,8 +5,7 @@
 }
 
 :root {
-    --bg-color: #ffdde1; /* A classic pastel pink */
-    /* ... keep the other lines the same ... */
+    --bg-color: #ffdde1; /* This is your chosen classic pastel pink */
 }
 
 body {
@@ -14,16 +13,16 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #fcefee;
+    background-color: var(--bg-color); /* <-- THIS IS THE FIX */
     font-family: 'Helvetica Neue', sans-serif;
     overflow: hidden;
-    padding: 10px; /* Add a little padding to prevent elements from touching the edge */
+    padding: 10px;
 }
 
 .container {
     text-align: center;
     padding: 20px;
-    width: 100%; /* Make sure container uses available width */
+    width: 100%;
 }
 
 .gif {
@@ -43,7 +42,7 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap; /* Allow buttons to wrap on very small screens */
+    flex-wrap: wrap;
 }
 
 button {
@@ -54,7 +53,7 @@ button {
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex-shrink: 0; /* Prevent buttons from shrinking weirdly */
+    flex-shrink: 0;
 }
 
 #yes-btn {
@@ -69,18 +68,17 @@ button {
 
 
 /* ---- Mobile Responsive Styles ---- */
-/* This code will only apply on screens 480px wide or smaller (like most phones) */
 @media (max-width: 480px) {
     .gif {
-        height: 150px; /* Make the GIF a bit smaller on phones */
+        height: 150px;
     }
 
     h1 {
-        font-size: 2rem; /* Make the main question text a bit smaller */
+        font-size: 2rem;
     }
 
     button {
-        font-size: 1rem; /* Slightly smaller button text */
+        font-size: 1rem;
     }
 
     #yes-btn {
@@ -91,4 +89,3 @@ button {
         padding: 10px 20px;
     }
 }
-
