@@ -1,0 +1,54 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const yesBtn = document.getElementById('yes-btn');
+    const noBtn = document.getElementById('no-btn');
+    const container = document.querySelector('.container');
+    const questionText = document.getElementById('question-text');
+
+    // --- State variables for the magic ---
+    let noClickCount = 0;
+    let yesButtonSize = 1; // Represents scale factor
+
+    const noButtonTexts = [
+        "No",
+        "Are you sure?",
+        "Really sure?",
+        "Think again!",
+        "Last chance!",
+        "Surely not?",
+        "You might regret this!",
+        "Give it another thought!",
+        "Is that your final answer?",
+        "You're breaking my heart ;(",
+    ];
+
+    // --- The "No" Button Escalation ---
+    noBtn.addEventListener('click', () => {
+        // Increment the count and size
+        noClickCount++;
+        yesButtonSize += 0.5; // Increase the growth factor
+
+        // Make the "Yes" button bigger
+        yesBtn.style.transform = `scale(${yesButtonSize})`;
+
+        // Change the "No" button text
+        // Use the modulo operator to loop through the texts if clicked too many times
+        noBtn.textContent = noButtonTexts[noClickCount % noButtonTexts.length];
+
+        // (Optional) Make the "No" button smaller
+        const noButtonScale = Math.max(1 - noClickCount * 0.1, 0.1); // Don't let it disappear completely
+        noBtn.style.transform = `scale(${noButtonScale})`;
+    });
+
+    // --- The "Yes" Button Celebration ---
+    yesBtn.addEventListener('click', () => {
+        // Create the success message
+        const successHTML = `
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2o3cnE2dG1wYWxtbWQ4cW95c3U2NHRhenFqaDQybG1kaG90ZGQxbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26FLdmIp6wJr91JAI/giphy.gif" alt="Cute hug gif" class="gif">
+            <h1>YAYAYAYAYAYAY!</h1>
+            <p style="font-size: 1.2rem; color: #333;">I love you more than anything!</p>
+        `;
+
+        // Replace the container's content with the success message
+        container.innerHTML = successHTML;
+    });
+});
