@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg-color: #ffdde1; /* A classic pastel pink */
+    /* ... keep the other lines the same ... */
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -86,3 +91,4 @@ button {
         padding: 10px 20px;
     }
 }
+
