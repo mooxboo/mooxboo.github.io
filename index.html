@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warning: Very hard question</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Version updated to 5 to avoid caching issues -->
+    <link rel="stylesheet" href="style.css?v=5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- 1. The hidden audio player -->
+    <audio id="background-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_702a4a3471.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
+        <!-- 2. The visible music button -->
+        <button id="music-toggle-btn">🔇</button>
+
         <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExamRuMTN0ZDk5OWltcjE0ZTJvZWp3dmE5YXRueTByZTdnZTRnazhuYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yqKPb9yq0e5HydblGl/giphy.gif" alt="Cute pleading gif" class="gif">
 
         <h1 id="question-text">Boo Boo Sayang, apakah mau maapin moo?</h1>
@@ -24,5 +34,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
