@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let yesButtonSize = 1; // Represents scale factor
 
     const noButtonTexts = [
-        "No",
-        "Are you sure?",
-        "Really sure?",
-        "Think again!",
-        "Last chance!",
-        "Surely not?",
-        "You might regret this!",
-        "Give it another thought!",
-        "Is that your final answer?",
+        "No no",
+        "Yakin nii yang?",
+        "Ga nyesel?",
+        "Seriusan yang",
+        "Kesempatan terakhir ini lho",
+        "Yakin engga?",
+        "Sayang pasti nyesel!",
+        "Coba pikirin ulang!",
+        "Apakah ini jawaban final sayang? :(",
         "You're breaking my heart ;(",
     ];
 
