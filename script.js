@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Yakin nii yang?",
         "Ga nyesel?",
         "Seriusan yang",
-        "Kesempatan terakhir ini lho",
+        "Kesempatan terakhir ini lho!",
         "Yakin engga?",
         "Sayang pasti nyesel!",
         "Coba pikirin ulang!",
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const successHTML = `
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2o3cnE2dG1wYWxtbWQ4cW95c3U2NHRhenFqaDQybG1kaG90ZGQxbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26FLdmIp6wJr91JAI/giphy.gif" alt="Cute hug gif" class="gif">
             <h1>YAYAYAYAYAYAY!</h1>
-            <p style="font-size: 1.2rem; color: #333;">I love you more than anything!</p>
+            <p style="font-size: 1.2rem; color: #333;">I love you to infinity and beyond Boo Boo Sayang!</p>
         `;
 
         // Replace the container's content with the success message
