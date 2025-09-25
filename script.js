@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     yesBtn.addEventListener('click', () => {
         // Create the success message
         const successHTML = `
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2o3cnE2dG1wYWxtbWQ4cW95c3U2NHRhenFqaDQybG1kaG90ZGQxbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/26FLdmIp6wJr91JAI/giphy.gif" alt="Cute hug gif" class="gif">
-            <h1>YAYAYAYAYAYAY!</h1>
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTFweDFwNHJ0d2tpYnBzbzkyNGhpbXp0cjVpNGxubHJsMTRmem15ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pqxXb287TfNtu/giphy.gif" alt="Cute hug gif" class="gif">
+            <h1>YEAAYYYY ASIIKKKKK AYCE!</h1>
             <p style="font-size: 1.2rem; color: #333;">I love you to infinity and beyond Boo Boo Sayang!</p>
         `;
 
