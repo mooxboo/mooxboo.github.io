@@ -1,51 +1,99 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Music Control ---
-    const music = document.getElementById('background-music');
-    const musicBtn = document.getElementById('music-toggle-btn');
-    let isPlaying = false;
+// --- CUSTOMIZE THIS SECTION ---
+const clues = [
+    {
+        clue: "Security Question 1/5: Analyze visual data. This first joint operation was at a terrestrial establishment designated as...?",
+        answer: "la trattoria",
+        image: "photo1.jpg" // The photo from your first date
+    },
+    {
+        clue: "Security Question 2/5: This archived simulation is one we have engaged in most frequently. What is its designation?",
+        answer: "the office",
+        image: "photo2.jpg" // A photo of you watching TV
+    },
+    {
+        clue: "Security Question 3/5: The callsign for our furry companion, seen here, is recorded as...?",
+        answer: "captain fluffenpants",
+        image: "photo3.jpg" // A photo of your pet
+    },
+    {
+        clue: "Security Question 4/5: Visual log from our coastal mission. The frozen ration depot was named...?",
+        answer: "salty's",
+        image: "photo4.jpg" // A photo from your vacation
+    },
+    {
+        clue: "Security Question 5/5: Final decryption key required. A critical system is scrambled! Unscramble its name: NPIK YSK",
+        answer: "pink sky",
+        image: "photo5.jpg" // A photo related to your song/place
+    }
+];
+// --- END CUSTOMIZE SECTION ---
 
-    musicBtn.addEventListener('click', () => {
-        if (isPlaying) {
-            music.pause();
-            musicBtn.textContent = '🔇'; // Muted icon
-        } else {
-            music.play();
-            musicBtn.textContent = '🎵'; // Music note icon
-        }
-        isPlaying = !isPlaying;
-    });
 
-    // --- Button Logic ---
-    const yesBtn = document.getElementById('yes-btn');
-    const noBtn = document.getElementById('no-btn');
-    const container = document.querySelector('.container');
-    const questionText = document.getElementById('question-text');
+// --- No need to edit below this line unless you want to get fancy ---
+let currentClueIndex = -1; 
 
-    let noClickCount = 0;
-    let yesButtonSize = 1;
+const clueContainer = document.getElementById('clue-container');
+const finalPrize = document.getElementById('final-prize');
+const clueText = document.getElementById('clue-text');
+const answerInput = document.getElementById('answer-input');
+const submitButton = document.getElementById('submit-button');
+const feedbackText = document.getElementById('feedback-text');
+const lockedStatus = document.querySelector('h2');
+const clueImage = document.getElementById('clue-image'); // Get the image element
 
-    const noButtonTexts = [ "No no", "Yakin nii yang?", "Ga nyesel?", "Seriusan yang", "Kesempatan terakhir ini lho!", "Yakin engga?", "Sayang pasti nyesel!", "Coba pikirin ulang!", "Apakah ini jawaban final sayang? :(", "You're breaking my heart ;(", ];
+submitButton.addEventListener('click', () => {
+    if (currentClueIndex === -1) {
+        currentClueIndex++;
+        displayClue();
+        return;
+    }
 
-    noBtn.addEventListener('click', () => {
-        noClickCount++;
-        yesButtonSize += 0.5;
-        yesBtn.style.transform = `scale(${yesButtonSize})`;
-        noBtn.textContent = noButtonTexts[noClickCount % noButtonTexts.length];
-        const noButtonScale = Math.max(1 - noClickCount * 0.1, 0.1);
-        noBtn.style.transform = `scale(${noButtonScale})`;
-    });
+    const userAnswer = answerInput.value.trim().toLowerCase();
+    const correctAnswer = clues[currentClueIndex].answer.toLowerCase();
 
-    yesBtn.addEventListener('click', () => {
-        const successHTML = `
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnk2b3U5M2Nhc3hpcGVod3Z6ZW93c3AwOXppYmI1aDluZnd5ODdoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jr9saevgSxACA/giphy.gif" alt="Cute hug gif" class="gif">
-            <h1>YEAAYYYY ASIIKKKKK AYCE!!</h1>
-            <p style="font-size: 1.2rem; color: #333;">I love you to infinity and beyond Boo Boo Sayang!!</p>
-        `;
-        container.innerHTML = successHTML;
-        // When "Yes" is clicked, ensure the music is playing
-        if (!isPlaying) {
-            music.play();
-            isPlaying = true; // Update the state
-        }
-    });
+    if (userAnswer === correctAnswer) {
+        feedbackText.textContent = ">>> ACCESS GRANTED <<<";
+        feedbackText.style.color = "#9effaf";
+
+        currentClueIndex++;
+        setTimeout(() => {
+            if (currentClueIndex < clues.length) {
+                displayClue();
+            } else {
+                showFinalPrize();
+            }
+        }, 1500);
+
+    } else {
+        feedbackText.textContent = "!!! ACCESS DENIED. SECURITY PROTOCOL ENGAGED !!!";
+        feedbackText.style.color = "#ff5a5f";
+        answerInput.value = "";
+    }
 });
+
+function displayClue() {
+    feedbackText.textContent = "";
+
+    // Set the image source and make it visible
+    clueImage.src = clues[currentClueIndex].image;
+    clueImage.style.display = 'block';
+
+    clueText.textContent = clues[currentClueIndex].clue;
+    answerInput.style.display = 'block';
+    answerInput.value = "";
+    answerInput.focus();
+    submitButton.textContent = "Decrypt";
+}
+
+function showFinalPrize() {
+    clueContainer.style.display = 'none';
+    lockedStatus.textContent = "Anniversary Log File: UNLOCKED";
+    lockedStatus.style.color = "#9effaf";
+    finalPrize.style.display = 'block';
+
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: -0.1 }
+    });
+}
