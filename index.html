@@ -3,34 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning: Very hard question</title>
-    <!-- Version updated to 6 -->
-    <link rel="stylesheet" href="style.css?v=6">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>Star Command: Anniversary Protocol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
+<!-- The only change is adding class="cosmic-background" -->
+<body class="cosmic-background">
 
-    <audio id="background-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3" type="audio/mpeg">
-    </audio>
+    <div id="container">
+        <img src="alien.png" alt="Toy Story Alien" id="alien-mascot">
 
-    <div class="container">
-        <button id="music-toggle-btn">🔇</button>
+        <h1>Star Command Protocol</h1>
+        <h2 class="status-locked">Anniversary Log File: LOCKED</h2>
 
-        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExamRuMTN0ZDk5OWltcjE0ZTJvZWp3dmE5YXRueTByZTdnZTRnazhuYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yqKPb9yq0e5HydblGl/giphy.gif" alt="Cute pleading gif" class="gif">
+        <div id="clue-container">
+            <img id="clue-image" src="" alt="Archived Visual Data" style="display: none;">
 
-        <h1 id="question-text">Boo Boo Sayang, apakah mau maapin moo?</h1>
+            <p id="clue-text">Welcome, Chosen One. To decrypt the anniversary file, you must pass 5 security challenges. Click to begin.</p>
+            <input type="text" id="answer-input" style="display:none;" placeholder="> Enter decryption key...">
+            <button id="submit-button">Initiate Protocol</button>
+            <p id="feedback-text"></p>
+        </div>
 
-        <div class="button-container">
-            <button id="yes-btn">Yes</button>
-            <button id="no-btn">No</button>
+        <div id="final-prize" style="display:none;">
+            <h2>DECRYPTION COMPLETE</h2>
+            <h3 class="status-unlocked">Log File UNLOCKED. Displaying contents...</h3>
+
+            <img src="final-photo.jpg" alt="Our Favorite Moment" id="final-photo">
+
+            <div class="message-box">
+                <p>To: The Chosen One ([Girlfriend's Name])</p>
+                <p>From: Agent [Your Name]</p>
+                <!-- ... Your heartfelt message ... -->
+                <p>Eternally Grateful,</p>
+                <p>[Your Name]</p>
+            </div>
         </div>
     </div>
 
-    <!-- THE CRITICAL FIX: Version updated to 6 here too! -->
-    <script src="script.js?v=6"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
 </body>
-
+</html>
