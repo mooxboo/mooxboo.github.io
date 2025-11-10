@@ -109,7 +109,7 @@ h1 {
 
 /* --- IMAGES & MASCOT --- */
 #alien-mascot {
-    width: 80px;
+    width: 120px; /* Changed from 80px to make it larger */
     margin-bottom: 10px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(var(--galaxy-teal), 0.6));
@@ -160,4 +160,5 @@ h1 {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
 
