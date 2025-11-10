@@ -9,7 +9,7 @@
 
 /* --- IMMERSIVE BACKGROUND --- */
 .cosmic-background {
-    background-image: url('nebula.jpg');
+    background-image: url('assets/nebula.jpg');
     background-size: cover;
     background-position: center center;
     background-attachment: fixed; /* Parallax effect */
@@ -160,3 +160,4 @@ h1 {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
