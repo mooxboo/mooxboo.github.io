@@ -17,8 +17,8 @@ const clues = [
         image: "assets/photo2.jpg"
     },
     {
-        clue: "Security Question 3/5: The callsign for our furry companion, seen here, is recorded as...?",
-        answer: "captain fluffenpants",
+        clue: "Security Question 3/5: Every Star Command vessel requires a non-sentient morale officer. Please state the official designation of our plush canine crewmember.",
+        answer: "corcor",
         image: "assets/photo3.jpg"
     },
     {
