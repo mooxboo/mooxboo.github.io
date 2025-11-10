@@ -117,4 +117,90 @@ submitButton.addEventListener('click', () => {
         updateProgressBar();
 
         setTimeout(() => {
-            if (currentClueIndex < clues ▏
+            if (currentClueIndex < clues.length) {
+                displayClue();
+            } else {
+                showFinalPrize();
+            }
+        }, 1500);
+
+    } else {
+        playSound(audio.incorrect);
+        feedbackText.textContent = "!!! ACCESS DENIED. SECURITY PROTOCOL ENGAGED !!!";
+        feedbackText.style.color = "#ff5a5f";
+        answerInput.value = "";
+    }
+});
+
+function updateProgressBar() {
+    const progressPercentage = (currentClueIndex / clues.length) * 100;
+    progressBar.style.width = progressPercentage + '%';
+    progressText.textContent = Math.round(progressPercentage) + '% Decrypted';
+}
+
+function displayClue() {
+    progressWrapper.style.display = 'block';
+    feedbackText.textContent = "";
+    clueImage.src = clues[currentClueIndex].image;
+    clueImage.style.display = 'block';
+    clueText.textContent = clues[currentClueIndex].clue;
+    answerInput.style.display = 'block';
+    answerInput.value = "";
+    answerInput.focus();
+    submitButton.textContent = "Decrypt";
+}
+
+function typeWriter(element, text, index, onComplete) {
+    if (index < text.length) {
+        if (text.substring(index, index + 1) === '\n') {
+            element.innerHTML += '<br>';
+            index++;
+        }
+        element.innerHTML += text[index++];
+
+        // THIS IS THE FIX: Play sound on the first character, then randomly
+        if (index === 1 || Math.random() < 0.35) {
+            playSound(audio.typing);
+        }
+
+        setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
+    } else if (onComplete) {
+        onComplete();
+    }
+}
+
+function startTypingSequence(messageIndex) {
+    if (messageIndex < typewriterElements.length && messageIndex < messagesToType.length) {
+        const currentElement = typewriterElements[messageIndex];
+        const currentText = messagesToType[messageIndex];
+
+        currentElement.classList.add('typing');
+
+        typeWriter(currentElement, currentText, 0, () => {
+            currentElement.classList.remove('typing');
+            startTypingSequence(messageIndex + 1);
+        });
+    }
+}
+
+function showFinalPrize() {
+    playSound(audio.reveal);
+    audio.background.volume = 0.1;
+
+    clueContainer.style.display = 'none';
+    if(lockedStatus) lockedStatus.style.display = 'none';
+    finalPrize.style.display = 'block';
+
+    progressBar.style.width = '100%';
+    progressText.textContent = 'Decryption Complete!';
+
+    startTypingSequence(0);
+
+    setTimeout(() => {
+        confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: -0.1 }
+        });
+    }, 1000);
+}
