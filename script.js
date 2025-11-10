@@ -48,7 +48,7 @@ const audio = {
     correct: new Audio('assets/sfx-correct.mp3'),
     incorrect: new Audio('assets/sfx-incorrect.mp3'),
     reveal: new Audio('assets/sfx-reveal.mp3'),
-    typing: new Audio('assets/sfx-typing.mp3')
+    typing: new Audio('assets/sfx-typing.mp3'), // THE MISSING COMMA IS NOW HERE!
 };
 audio.background.loop = true;
 audio.background.volume = 0.3;
@@ -152,17 +152,19 @@ function displayClue() {
 
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
-        if (text.substring(index, index + 1) === '\n') {
-            element.innerHTML += '<br>';
-            index++;
-        }
-        element.innerHTML += text[index++];
-
-        // THIS IS THE FIX: Play sound on the first character, then randomly
-        if (index === 1 || Math.random() < 0.35) {
+        // Play sound on the first character of a line, then randomly
+        if (index === 0 || Math.random() < 0.35) {
             playSound(audio.typing);
         }
 
+        // Correctly handle line breaks and character typing
+        if (text.substring(index, index + 1) === '\n') {
+            element.innerHTML += '<br>';
+        } else {
+            element.innerHTML += text[index];
+        }
+
+        index++;
         setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
     } else if (onComplete) {
         onComplete();
