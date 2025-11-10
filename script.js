@@ -1,8 +1,16 @@
 // --- CUSTOMIZE THIS SECTION ---
 const clues = [
     {
-        clue: "Security Question 1/5: Analyze visual data. This first joint operation was at a terrestrial establishment designated as...?",
-        answer: "la trattoria",
+        clue: "Security Question 1/5: According to the official Star Command mission log, what was the terrestrial stardate of the 'First Contact' event? (Format: Day Month Year)",
+        // The answer is now an array of acceptable, lowercase strings
+        answer: [
+            "30 september 2023",
+            "september 30 2023",
+            "30 sep 2023",
+            "30 September 2023",
+            "September 30 2023",
+            "30 Sep 2023",
+        ],
         image: "assets/photo1.jpg"
     },
     {
