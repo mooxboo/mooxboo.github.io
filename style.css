@@ -6,6 +6,7 @@
     --dark-space: #0a0f18;
 }
 
+/* This is the NEW, edge-to-edge compatible version */
 .cosmic-background {
     background-image: url('assets/nebula.jpg');
     background-size: cover;
@@ -14,12 +15,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+
+    /* Use dynamic viewport height for perfect mobile sizing */
+    min-height: 100dvh; 
+
+    /* Keep original padding AND add safe area padding for iPhone */
+    padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom)) 20px;
+
     box-sizing: border-box;
     font-family: 'Share Tech Mono', monospace;
-
-    /* --- ADD THIS LINE FOR POLISH --- */
     font-size: 16px; 
 }
 
@@ -213,6 +217,7 @@ h1 {
         box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
     }
 }
+
 
 
 
