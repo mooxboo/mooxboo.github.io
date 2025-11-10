@@ -6,8 +6,8 @@
     --dark-space: #0a0f18;
 }
 
-/* This is the NEW, edge-to-edge compatible version */
 .cosmic-background {
+    background-color: var(--dark-space); /* NEW: Ensures no white flashes */
     background-image: url('assets/nebula.jpg');
     background-size: cover;
     background-position: center center;
@@ -15,13 +15,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Use dynamic viewport height for perfect mobile sizing */
-    min-height: 100dvh; 
-
-    /* Keep original padding AND add safe area padding for iPhone */
+    min-height: 100dvh;
     padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom)) 20px;
-
     box-sizing: border-box;
     font-family: 'Share Tech Mono', monospace;
     font-size: 16px; 
@@ -40,6 +35,8 @@
     width: 100%;
     color: var(--starlight-white);
 }
+
+/* ... all other styles remain the same ... */
 
 h1, h2, h3 {
     font-family: 'Orbitron', sans-serif;
@@ -75,8 +72,6 @@ h1 {
     background: linear-gradient(90deg, var(--electric-purple), var(--galaxy-teal));
     border-radius: 50px;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* --- ADD THESE TWO LINES FOR THE GLOW --- */
     box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
     animation: glowing-bar 2s ease-in-out infinite;
 }
@@ -111,15 +106,14 @@ h1 {
     font-size: 1.2em;
     width: 90%;
     padding: 10px;
-    /* UPDATED MARGIN FOR BETTER CENTERING */
-    margin: 35px auto 25px; 
+    margin: 35px auto 25px;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 #answer-input::placeholder {
     text-align: center;
-    opacity: 0.7; /* Optional: Makes the placeholder slightly less prominent */
+    opacity: 0.7;
 }
 
 #answer-input:focus {
@@ -156,7 +150,7 @@ h1 {
 }
 
 #alien-mascot {
-    width: 150px; /* Changed from 120px for a more prominent look */
+    width: 150px;
     margin-bottom: 10px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(var(--galaxy-teal), 0.6));
@@ -217,7 +211,3 @@ h1 {
         box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
     }
 }
-
-
-
-
