@@ -3,7 +3,7 @@
     --galaxy-teal: #00f6ff;
     --starlight-white: #e0e0e0;
     --warning-red: #ff5a5f;
-    --dark-space: #0a0f18;
+    --dark-space: #000000; /* Changed to pure black for a seamless match */
 }
 
 .cosmic-background {
@@ -211,3 +211,4 @@ h1 {
         box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
     }
 }
+
