@@ -3,11 +3,11 @@
     --galaxy-teal: #00f6ff;
     --starlight-white: #e0e0e0;
     --warning-red: #ff5a5f;
-    --dark-space: #000000; /* Changed to pure black for a seamless match */
+    --dark-space: #000000; /* Pure black for a seamless background match */
 }
 
 .cosmic-background {
-    background-color: var(--dark-space); /* NEW: Ensures no white flashes */
+    background-color: var(--dark-space);
     background-image: url('assets/nebula.jpg');
     background-size: cover;
     background-position: center center;
@@ -34,9 +34,8 @@
     max-width: 600px;
     width: 100%;
     color: var(--starlight-white);
+    position: relative; /* Added for mute button positioning */
 }
-
-/* ... all other styles remain the same ... */
 
 h1, h2, h3 {
     font-family: 'Orbitron', sans-serif;
@@ -184,6 +183,22 @@ h1 {
     font-size: 1.05em;
 }
 
+#mute-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    z-index: 100;
+}
+#mute-button:hover {
+    opacity: 1;
+}
+
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -211,4 +226,3 @@ h1 {
         box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
     }
 }
-
