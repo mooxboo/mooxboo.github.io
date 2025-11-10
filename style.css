@@ -1,4 +1,3 @@
-/* --- THEME COLORS (Easy to customize!) --- */
 :root {
     --electric-purple: #be00ff;
     --galaxy-teal: #00f6ff;
@@ -7,12 +6,11 @@
     --dark-space: #0a0f18;
 }
 
-/* --- IMMERSIVE BACKGROUND --- */
 .cosmic-background {
     background-image: url('assets/nebula.jpg');
     background-size: cover;
     background-position: center center;
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,11 +20,10 @@
     font-family: 'Share Tech Mono', monospace;
 }
 
-/* --- GLASSMORPHISM CONTAINER --- */
 #container {
-    background: rgba(10, 15, 25, 0.7); /* Semi-transparent background */
+    background: rgba(10, 15, 25, 0.7);
     backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%); /* For Safari */
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(var(--electric-purple), 0.3);
@@ -37,14 +34,13 @@
     color: var(--starlight-white);
 }
 
-/* --- TYPOGRAPHY & HEADINGS --- */
 h1, h2, h3 {
     font-family: 'Orbitron', sans-serif;
     text-shadow: 0 0 8px rgba(var(--galaxy-teal), 0.5);
     margin: 5px 0 10px 0;
 }
 h1 {
-    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     color: var(--galaxy-teal);
 }
 .status-locked {
@@ -52,10 +48,42 @@ h1 {
     animation: pulse 2s infinite;
 }
 .status-unlocked {
-    color: #9effaf; /* A bright success green */
+    color: #9effaf;
 }
 
-/* --- INTERACTIVE ELEMENTS --- */
+#progress-wrapper {
+    position: relative;
+    width: 90%;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    margin: 25px auto;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--electric-purple), var(--galaxy-teal));
+    border-radius: 50px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: var(--starlight-white);
+    font-size: 0.9em;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    white-space: nowrap;
+}
+
 #clue-text {
     font-size: 1.1em;
     min-height: 40px;
@@ -87,13 +115,15 @@ h1 {
     color: white;
     border: none;
     padding: 14px 30px;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     font-family: 'Orbitron', sans-serif;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(var(--electric-purple), 0.5);
     letter-spacing: 1px;
+    position: relative;
+    z-index: 10;
 }
 #submit-button:hover {
     transform: translateY(-3px);
@@ -107,9 +137,8 @@ h1 {
     font-size: 1.1em;
 }
 
-/* --- IMAGES & MASCOT --- */
 #alien-mascot {
-    width: 120px; /* Changed from 80px to make it larger */
+    width: 120px;
     margin-bottom: 10px;
     animation: float 3s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba(var(--galaxy-teal), 0.6));
@@ -132,7 +161,6 @@ h1 {
     box-shadow: 0 0 20px rgba(var(--electric-purple), 0.5);
 }
 
-/* --- FINAL MESSAGE BOX --- */
 .message-box {
     background: rgba(0,0,0,0.3);
     border-left: 3px solid var(--electric-purple);
@@ -144,7 +172,6 @@ h1 {
     font-size: 1.05em;
 }
 
-/* --- ANIMATIONS --- */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -160,5 +187,3 @@ h1 {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
-
-
