@@ -1,80 +1,162 @@
-/* ---- The "Pastel Dream" Theme ---- */
+/* --- THEME COLORS (Easy to customize!) --- */
 :root {
-    --bg-start: #fde4e4;      /* Light pink gradient start */
-    --bg-end: #fcd2d7;        /* Deeper pink gradient end */
-    --container-bg: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
-    --heading-color: #d96671;  /* A deeper, softer red-pink */
-    --text-color: #6d6875;     /* A soft, desaturated dark color */
-    --yes-bg: #c7b8e6;         /* A friendly pastel lavender */
-    --yes-hover-bg: #b5a3d9;   /* A slightly darker lavender */
-    --no-bg: #ffb3ba;          /* A soft pastel coral */
-    --no-hover-bg: #ff9aa2;    /* A slightly darker coral */
-    --shadow-color: rgba(217, 102, 113, 0.15);
+    --electric-purple: #be00ff;
+    --galaxy-teal: #00f6ff;
+    --starlight-white: #e0e0e0;
+    --warning-red: #ff5a5f;
+    --dark-space: #0a0f18;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
+/* --- IMMERSIVE BACKGROUND --- */
+.cosmic-background {
+    background-image: url('nebula.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Parallax effect */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-    font-family: 'Helvetica Neue', sans-serif;
-    color: var(--text-color);
-    overflow: hidden;
-    padding: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', monospace;
 }
 
-.container {
-    position: relative; /* CRITICAL: This allows the music button to be placed correctly */
+/* --- GLASSMORPHISM CONTAINER --- */
+#container {
+    background: rgba(10, 15, 25, 0.7); /* Semi-transparent background */
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(var(--electric-purple), 0.3);
+    padding: 30px 40px;
     text-align: center;
-    padding: 30px;
-    background-color: var(--container-bg);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
+    max-width: 600px;
     width: 100%;
-    max-width: 500px;
+    color: var(--starlight-white);
 }
 
-.gif { height: 200px; margin-bottom: 20px; border-radius: 15px; }
-h1 { font-family: 'Pacifico', cursive; color: var(--heading-color); font-size: 2.5rem; margin-bottom: 30px; }
-.button-container { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; }
-button { border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; color: white; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-#yes-btn { background-color: var(--yes-bg); padding: 15px 30px; }
-#yes-btn:hover { background-color: var(--yes-hover-bg); }
-#no-btn { background-color: var(--no-bg); padding: 12px 25px; }
-#no-btn:hover { background-color: var(--no-hover-bg); }
-
-/* ---- NEW MUSIC BUTTON STYLES ---- */
-#music-toggle-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: var(--heading-color);
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* --- TYPOGRAPHY & HEADINGS --- */
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 8px rgba(var(--galaxy-teal), 0.5);
+    margin: 5px 0 10px 0;
 }
-#music-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.8);
+h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+    color: var(--galaxy-teal);
+}
+.status-locked {
+    color: var(--warning-red);
+    animation: pulse 2s infinite;
+}
+.status-unlocked {
+    color: #9effaf; /* A bright success green */
 }
 
-/* ---- Mobile Responsive Styles ---- */
-@media (max-width: 480px) {
-    .container { padding: 20px; }
-    .gif { height: 150px; }
-    h1 { font-size: 2rem; }
-    button { font-size: 1rem; }
-    #yes-btn { padding: 12px 25px; }
-    #no-btn { padding: 10px 20px; }
-    #music-toggle-btn { top: 10px; right: 10px; width: 35px; height: 35px; }
+/* --- INTERACTIVE ELEMENTS --- */
+#clue-text {
+    font-size: 1.1em;
+    min-height: 40px;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+#answer-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--starlight-white);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2em;
+    width: 90%;
+    padding: 10px;
+    margin: 15px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+#answer-input:focus {
+    outline: none;
+    border-bottom-color: var(--galaxy-teal);
+    box-shadow: 0 5px 15px -5px rgba(var(--galaxy-teal), 0.4);
+}
+
+#submit-button {
+    background: linear-gradient(45deg, var(--electric-purple), var(--galaxy-teal));
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px; /* Pill shape */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(var(--electric-purple), 0.5);
+    letter-spacing: 1px;
+}
+#submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(var(--galaxy-teal), 0.6);
+}
+
+#feedback-text {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 20px;
+    font-size: 1.1em;
+}
+
+/* --- IMAGES & MASCOT --- */
+#alien-mascot {
+    width: 80px;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(var(--galaxy-teal), 0.6));
+}
+
+#clue-image, #final-photo {
+    max-width: 90%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    border: 2px solid var(--galaxy-teal);
+    border-radius: 8px;
+    margin: 0 auto 20px auto;
+    display: block;
+    box-shadow: 0 0 15px rgba(var(--galaxy-teal), 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+#final-photo {
+    border-color: var(--electric-purple);
+    box-shadow: 0 0 20px rgba(var(--electric-purple), 0.5);
+}
+
+/* --- FINAL MESSAGE BOX --- */
+.message-box {
+    background: rgba(0,0,0,0.3);
+    border-left: 3px solid var(--electric-purple);
+    text-align: left;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 8px;
+    line-height: 1.7;
+    font-size: 1.05em;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
