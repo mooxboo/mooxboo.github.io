@@ -71,6 +71,10 @@ h1 {
     background: linear-gradient(90deg, var(--electric-purple), var(--galaxy-teal));
     border-radius: 50px;
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- ADD THESE TWO LINES FOR THE GLOW --- */
+    box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
+    animation: glowing-bar 2s ease-in-out infinite;
 }
 
 #progress-text {
@@ -191,4 +195,15 @@ h1 {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes glowing-bar {
+    0% {
+        box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--galaxy-teal), 0 0 25px var(--galaxy-teal);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
+    }
+}
 
