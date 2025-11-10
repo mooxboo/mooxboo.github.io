@@ -43,15 +43,19 @@ const messagesToType = [
 let currentClueIndex = -1; 
 let isMuted = false;
 
+// UPDATED: Add the new typing sound
 const audio = {
     background: new Audio('assets/background-music.mp3'),
     correct: new Audio('assets/sfx-correct.mp3'),
     incorrect: new Audio('assets/sfx-incorrect.mp3'),
     reveal: new Audio('assets/sfx-reveal.mp3'),
+    typing: new Audio('assets/sfx-typing.mp3') // NEW typing sound
 };
 audio.background.loop = true;
 audio.background.volume = 0.3;
+audio.typing.volume = 0.6; // Set typing sound to be subtle
 
+// ... (rest of your const declarations for HTML elements)
 const clueContainer = document.getElementById('clue-container');
 const finalPrize = document.getElementById('final-prize');
 const clueText = document.getElementById('clue-text');
@@ -70,16 +74,20 @@ const typingSpeed = 40;
 function playSound(sound) {
     if (!isMuted) {
         sound.currentTime = 0;
-        sound.play();
+        sound.play().catch(e => {}); // Play and ignore any potential errors
     }
 }
 
 muteButton.addEventListener('click', () => {
     isMuted = !isMuted;
     muteButton.textContent = isMuted ? '🔈' : '🔇';
-    audio.background.muted = isMuted;
+    // Mute/unmute all sounds
+    for (const key in audio) {
+        audio[key].muted = isMuted;
+    }
 });
 
+// Autoplay logic for background music
 document.body.addEventListener('click', () => {
     if (audio.background.paused) {
         audio.background.play().catch(e => console.error("Autoplay was prevented.", e));
@@ -88,6 +96,7 @@ document.body.addEventListener('click', () => {
 
 
 submitButton.addEventListener('click', () => {
+    // ... (This entire function remains the same)
     if (currentClueIndex === -1) {
         currentClueIndex++;
         displayClue();
@@ -129,12 +138,14 @@ submitButton.addEventListener('click', () => {
 });
 
 function updateProgressBar() {
+    // ... (This function remains the same)
     const progressPercentage = (currentClueIndex / clues.length) * 100;
     progressBar.style.width = progressPercentage + '%';
     progressText.textContent = Math.round(progressPercentage) + '% Decrypted';
 }
 
 function displayClue() {
+    // ... (This function remains the same)
     progressWrapper.style.display = 'block';
     feedbackText.textContent = "";
     clueImage.src = clues[currentClueIndex].image;
@@ -146,6 +157,7 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
+// UPDATED: typeWriter function with sound
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
         if (text.substring(index, index + 1) === '\n') {
@@ -153,6 +165,12 @@ function typeWriter(element, text, index, onComplete) {
             index++;
         }
         element.innerHTML += text[index++];
+
+        // NEW: Play typing sound randomly for a subtle effect
+        if (Math.random() < 0.4) { // 40% chance to play sound on each character
+            playSound(audio.typing);
+        }
+
         setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
     } else if (onComplete) {
         onComplete();
@@ -160,6 +178,7 @@ function typeWriter(element, text, index, onComplete) {
 }
 
 function startTypingSequence(messageIndex) {
+    // ... (This function remains the same)
     if (messageIndex < typewriterElements.length && messageIndex < messagesToType.length) {
         const currentElement = typewriterElements[messageIndex];
         const currentText = messagesToType[messageIndex];
@@ -174,6 +193,7 @@ function startTypingSequence(messageIndex) {
 }
 
 function showFinalPrize() {
+    // ... (This function remains the same)
     playSound(audio.reveal);
     audio.background.volume = 0.1;
 
