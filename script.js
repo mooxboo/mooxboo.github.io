@@ -1,15 +1,13 @@
 // --- CUSTOMIZE THIS SECTION ---
+// The first question now has an array of possible answers.
+// The other questions still have a simple string answer.
 const clues = [
     {
         clue: "Security Question 1/5: According to the official Star Command mission log, what was the terrestrial stardate of the 'First Contact' event? (Format: Day Month Year)",
-        // The answer is now an array of acceptable, lowercase strings
         answer: [
             "30 september 2023",
             "september 30 2023",
-            "30 sep 2023",
-            "30 September 2023",
-            "September 30 2023",
-            "30 Sep 2023",
+            "30 sep 2023"
         ],
         image: "assets/photo1.jpg"
     },
@@ -29,8 +27,8 @@ const clues = [
         image: "assets/photo4.jpg"
     },
     {
-        clue: "Security Question 5/5: Final decryption key required. A critical system is scrambled! Unscramble its name: NPIK YSK",
-        answer: "pink sky",
+        clue: "Security Question 5/5: Final decryption key required! Unscramble the name of our designated habitation unit: RPAETENMT",
+        answer: "apartment",
         image: "assets/photo5.jpg"
     }
 ];
@@ -90,10 +88,10 @@ submitButton.addEventListener('click', () => {
         return;
     }
 
-    // This is the NEW, flexible logic
+    // --- NEW FLEXIBLE ANSWER LOGIC ---
     const userAnswer = answerInput.value.trim().toLowerCase();
     const correctAnswerObject = clues[currentClueIndex].answer;
-    
+
     let isAnswerCorrect = false;
     if (Array.isArray(correctAnswerObject)) {
         // If the answer is an array, check if the user's answer is in it
@@ -102,15 +100,29 @@ submitButton.addEventListener('click', () => {
         // Otherwise, do a simple string comparison
         isAnswerCorrect = (userAnswer === correctAnswerObject.toLowerCase());
     }
-    
+    // --- END OF NEW LOGIC ---
+
     if (isAnswerCorrect) {
         playSound(audio.correct);
         feedbackText.textContent = ">>> ACCESS GRANTED <<<";
-        // ... the rest of the success logic remains the same ...
+        feedbackText.style.color = "#9effaf";
+
+        currentClueIndex++;
+        updateProgressBar();
+
+        setTimeout(() => {
+            if (currentClueIndex < clues.length) {
+                displayClue();
+            } else {
+                showFinalPrize();
+            }
+        }, 1500);
+
     } else {
         playSound(audio.incorrect);
         feedbackText.textContent = "!!! ACCESS DENIED. SECURITY PROTOCOL ENGAGED !!!";
-        // ... the rest of the failure logic remains the same ...
+        feedbackText.style.color = "#ff5a5f";
+        answerInput.value = "";
     }
 });
 
