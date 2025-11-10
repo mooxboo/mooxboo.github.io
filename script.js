@@ -1,14 +1,8 @@
 // --- CUSTOMIZE THIS SECTION ---
-// The first question now has an array of possible answers.
-// The other questions still have a simple string answer.
 const clues = [
     {
         clue: "Security Question 1/5: According to the official Star Command mission log, what was the terrestrial stardate of the 'First Contact' event? (Format: Day Month Year)",
-        answer: [
-            "30 september 2023",
-            "september 30 2023",
-            "30 sep 2023"
-        ],
+        answer: ["30 september 2023", "september 30 2023", "30 sep 2023"],
         image: "assets/photo1.jpg"
     },
     {
@@ -31,6 +25,16 @@ const clues = [
         answer: "kost bmi",
         image: "assets/photo5.jpg"
     }
+];
+
+const messagesToType = [
+    "My Dearest Boo Boo Sayang,",
+    "If you're reading this, it means you've successfully decrypted the log file. But I never had a single doubt. After all, you've always been the only one who could decode my heart.",
+    "The last two years feel like the greatest mission I've ever been on. Our official log file began on 30 September 2023, and since then, every entry has been an adventure. From analyzing aquatic species in Palembang to debriefing with our plush canine officer, Corcor, every moment with you is a memory I've logged and cherished.",
+    "But the most important data point, the one that holds my universe together, is you. Before you, I was just Agent Moo, flying solo. Now, I have my co-pilot, my navigator, my everything. You are my gravity. With you, even just watching the Kaciw squadron feels like discovering a new galaxy.",
+    "I can't wait to see what missions the coming years have in store for us. More adventures, more laughter, and more just being with you. You have been chosen... by me. And I will choose you every single day, forever.",
+    "Happy Anniversary, my love. Ooooooh!",
+    "Eternally Grateful,\nYour Moo"
 ];
 // --- END CUSTOMIZE SECTION ---
 
@@ -60,6 +64,8 @@ const progressWrapper = document.getElementById('progress-wrapper');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
 const muteButton = document.getElementById('mute-button');
+const typewriterElements = document.querySelectorAll('.typewriter');
+const typingSpeed = 40;
 
 function playSound(sound) {
     if (!isMuted) {
@@ -88,19 +94,15 @@ submitButton.addEventListener('click', () => {
         return;
     }
 
-    // --- NEW FLEXIBLE ANSWER LOGIC ---
     const userAnswer = answerInput.value.trim().toLowerCase();
     const correctAnswerObject = clues[currentClueIndex].answer;
 
     let isAnswerCorrect = false;
     if (Array.isArray(correctAnswerObject)) {
-        // If the answer is an array, check if the user's answer is in it
         isAnswerCorrect = correctAnswerObject.includes(userAnswer);
     } else {
-        // Otherwise, do a simple string comparison
         isAnswerCorrect = (userAnswer === correctAnswerObject.toLowerCase());
     }
-    // --- END OF NEW LOGIC ---
 
     if (isAnswerCorrect) {
         playSound(audio.correct);
@@ -144,6 +146,33 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
+function typeWriter(element, text, index, onComplete) {
+    if (index < text.length) {
+        if (text.substring(index, index + 1) === '\n') {
+            element.innerHTML += '<br>';
+            index++;
+        }
+        element.innerHTML += text[index++];
+        setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
+    } else if (onComplete) {
+        onComplete();
+    }
+}
+
+function startTypingSequence(messageIndex) {
+    if (messageIndex < typewriterElements.length && messageIndex < messagesToType.length) {
+        const currentElement = typewriterElements[messageIndex];
+        const currentText = messagesToType[messageIndex];
+
+        currentElement.classList.add('typing');
+
+        typeWriter(currentElement, currentText, 0, () => {
+            currentElement.classList.remove('typing');
+            startTypingSequence(messageIndex + 1);
+        });
+    }
+}
+
 function showFinalPrize() {
     playSound(audio.reveal);
     audio.background.volume = 0.1;
@@ -155,9 +184,13 @@ function showFinalPrize() {
     progressBar.style.width = '100%';
     progressText.textContent = 'Decryption Complete!';
 
-    confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: -0.1 }
-    });
+    startTypingSequence(0);
+
+    setTimeout(() => {
+        confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: -0.1 }
+        });
+    }, 1000);
 }
