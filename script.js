@@ -48,7 +48,7 @@ const audio = {
     correct: new Audio('assets/sfx-correct.mp3'),
     incorrect: new Audio('assets/sfx-incorrect.mp3'),
     reveal: new Audio('assets/sfx-reveal.mp3'),
-    typing: new Audio('assets/sfx-typing.mp3'), // THE MISSING COMMA IS NOW HERE!
+    typing: new Audio('assets/sfx-typing.mp3'),
 };
 audio.background.loop = true;
 audio.background.volume = 0.3;
@@ -150,6 +150,7 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
+// THIS IS THE CORRECTED TYPEWRITER FUNCTION
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
         // Play sound on the first character of a line, then randomly
@@ -157,7 +158,6 @@ function typeWriter(element, text, index, onComplete) {
             playSound(audio.typing);
         }
 
-        // Correctly handle line breaks and character typing
         if (text.substring(index, index + 1) === '\n') {
             element.innerHTML += '<br>';
         } else {
