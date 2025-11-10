@@ -27,8 +27,8 @@ const clues = [
         image: "assets/photo4.jpg"
     },
     {
-        clue: "Security Question 5/5: Final decryption key required! Unscramble the name of our designated habitation unit: RPAETENMT",
-        answer: "apartment",
+        clue: "Security Question 5/5: FINAL DECRYPTION! The location of 'The Chosen One' is scrambled. To unlock the anniversary log, recompile the designation of your primary command post: SIT KOMB",
+        answer: "kost bmi",
         image: "assets/photo5.jpg"
     }
 ];
