@@ -18,6 +18,9 @@
     padding: 20px;
     box-sizing: border-box;
     font-family: 'Share Tech Mono', monospace;
+
+    /* --- ADD THIS LINE FOR POLISH --- */
+    font-size: 16px; 
 }
 
 #container {
@@ -187,3 +190,4 @@ h1 {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+
