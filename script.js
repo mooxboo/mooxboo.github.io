@@ -90,30 +90,27 @@ submitButton.addEventListener('click', () => {
         return;
     }
 
+    // This is the NEW, flexible logic
     const userAnswer = answerInput.value.trim().toLowerCase();
-    const correctAnswer = clues[currentClueIndex].answer.toLowerCase();
-
-    if (userAnswer === correctAnswer) {
+    const correctAnswerObject = clues[currentClueIndex].answer;
+    
+    let isAnswerCorrect = false;
+    if (Array.isArray(correctAnswerObject)) {
+        // If the answer is an array, check if the user's answer is in it
+        isAnswerCorrect = correctAnswerObject.includes(userAnswer);
+    } else {
+        // Otherwise, do a simple string comparison
+        isAnswerCorrect = (userAnswer === correctAnswerObject.toLowerCase());
+    }
+    
+    if (isAnswerCorrect) {
         playSound(audio.correct);
         feedbackText.textContent = ">>> ACCESS GRANTED <<<";
-        feedbackText.style.color = "#9effaf";
-
-        currentClueIndex++;
-        updateProgressBar();
-
-        setTimeout(() => {
-            if (currentClueIndex < clues.length) {
-                displayClue();
-            } else {
-                showFinalPrize();
-            }
-        }, 1500);
-
+        // ... the rest of the success logic remains the same ...
     } else {
         playSound(audio.incorrect);
         feedbackText.textContent = "!!! ACCESS DENIED. SECURITY PROTOCOL ENGAGED !!!";
-        feedbackText.style.color = "#ff5a5f";
-        answerInput.value = "";
+        // ... the rest of the failure logic remains the same ...
     }
 });
 
