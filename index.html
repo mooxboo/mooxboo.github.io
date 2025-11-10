@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Command: Anniversary Protocol</title>
 
-    <!-- This line loads your favicon -->
+    <!-- Standard favicon for desktop browsers -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<!-- The only change is adding class="cosmic-background" -->
 <body class="cosmic-background">
 
     <div id="container">
@@ -20,9 +19,13 @@
         <h1>Star Command Protocol</h1>
         <h2 class="status-locked">Anniversary Log File: LOCKED</h2>
 
+        <div id="progress-wrapper" style="display: none;">
+            <div id="progress-bar"></div>
+            <p id="progress-text">0% Decrypted</p>
+        </div>
+
         <div id="clue-container">
             <img id="clue-image" src="" alt="Archived Visual Data" style="display: none;">
-
             <p id="clue-text">Welcome, Chosen One. To decrypt the anniversary file, you must pass 5 security challenges. Click to begin.</p>
             <input type="text" id="answer-input" style="display:none;" placeholder="> Enter decryption key...">
             <button id="submit-button">Initiate Protocol</button>
@@ -38,7 +41,10 @@
             <div class="message-box">
                 <p>To: The Chosen One ([Girlfriend's Name])</p>
                 <p>From: Agent [Your Name]</p>
-                <!-- ... Your heartfelt message ... -->
+                <p>Subject: Two Years of Adventure</p>
+                <p>My dearest [Girlfriend's Name],</p>
+                <p>If you're reading this, it means you're just as smart, clever, and wonderful as I knew you were. These past two years have been an incredible journey... [Write your heartfelt message here!]</p>
+                <p>You have been chosen... by me. And I'll keep choosing you every day. Happy Anniversary. Ooooooh!</p>
                 <p>Eternally Grateful,</p>
                 <p>[Your Name]</p>
             </div>
@@ -49,5 +55,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
