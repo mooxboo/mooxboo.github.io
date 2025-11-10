@@ -12,8 +12,8 @@ const clues = [
         image: "assets/photo1.jpg"
     },
     {
-        clue: "Security Question 2/5: This archived simulation is one we have engaged in most frequently. What is its designation?",
-        answer: "the office",
+        clue: "Security Question 2/5: Accessing mission archives from the Palembang sector. For our mid-day sustenance protocol, we analyzed a local aquatic species. What was its official designation?",
+        answer: "pindang bandeng",
         image: "assets/photo2.jpg"
     },
     {
