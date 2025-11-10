@@ -3,27 +3,27 @@ const clues = [
     {
         clue: "Security Question 1/5: Analyze visual data. This first joint operation was at a terrestrial establishment designated as...?",
         answer: "la trattoria",
-        image: "photo1.jpg" // The photo from your first date
+        image: "assets/photo1.jpg" // The photo from your first date
     },
     {
         clue: "Security Question 2/5: This archived simulation is one we have engaged in most frequently. What is its designation?",
         answer: "the office",
-        image: "photo2.jpg" // A photo of you watching TV
+        image: "assets/photo2.jpg" // A photo of you watching TV
     },
     {
         clue: "Security Question 3/5: The callsign for our furry companion, seen here, is recorded as...?",
         answer: "captain fluffenpants",
-        image: "photo3.jpg" // A photo of your pet
+        image: "assets/photo3.jpg" // A photo of your pet
     },
     {
         clue: "Security Question 4/5: Visual log from our coastal mission. The frozen ration depot was named...?",
         answer: "salty's",
-        image: "photo4.jpg" // A photo from your vacation
+        image: "assets/photo4.jpg" // A photo from your vacation
     },
     {
         clue: "Security Question 5/5: Final decryption key required. A critical system is scrambled! Unscramble its name: NPIK YSK",
         answer: "pink sky",
-        image: "photo5.jpg" // A photo related to your song/place
+        image: "assets/photo5.jpg" // A photo related to your song/place
     }
 ];
 // --- END CUSTOMIZE SECTION ---
