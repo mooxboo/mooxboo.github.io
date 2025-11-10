@@ -22,8 +22,8 @@ const clues = [
         image: "assets/photo3.jpg"
     },
     {
-        clue: "Security Question 4/5: Visual log from our coastal mission. The frozen ration depot was named...?",
-        answer: "salty's",
+        clue: "Security Question 4/5: For ongoing tactical analysis, we frequently review mission logs from an elite squadron of operatives. What is the designated callsign of this gaming unit?",
+        answer: "kaciw",
         image: "assets/photo4.jpg"
     },
     {
