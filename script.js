@@ -1,6 +1,4 @@
 // --- CUSTOMIZE THIS SECTION ---
-// Add your 5 personal questions and answers here.
-// The answers are NOT case-sensitive.
 const clues = [
     {
         clue: "Security Question 1/5: Analyze visual data. This first joint operation was at a terrestrial establishment designated as...?",
@@ -33,6 +31,16 @@ const clues = [
 
 // --- No need to edit below this line ---
 let currentClueIndex = -1; 
+let isMuted = false;
+
+const audio = {
+    background: new Audio('assets/background-music.mp3'),
+    correct: new Audio('assets/sfx-correct.mp3'),
+    incorrect: new Audio('assets/sfx-incorrect.mp3'),
+    reveal: new Audio('assets/sfx-reveal.mp3'),
+};
+audio.background.loop = true;
+audio.background.volume = 0.3;
 
 const clueContainer = document.getElementById('clue-container');
 const finalPrize = document.getElementById('final-prize');
@@ -45,6 +53,27 @@ const clueImage = document.getElementById('clue-image');
 const progressWrapper = document.getElementById('progress-wrapper');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
+const muteButton = document.getElementById('mute-button');
+
+function playSound(sound) {
+    if (!isMuted) {
+        sound.currentTime = 0;
+        sound.play();
+    }
+}
+
+muteButton.addEventListener('click', () => {
+    isMuted = !isMuted;
+    muteButton.textContent = isMuted ? '🔈' : '🔇';
+    audio.background.muted = isMuted;
+});
+
+document.body.addEventListener('click', () => {
+    if (audio.background.paused) {
+        audio.background.play().catch(e => console.error("Autoplay was prevented.", e));
+    }
+}, { once: true });
+
 
 submitButton.addEventListener('click', () => {
     if (currentClueIndex === -1) {
@@ -57,6 +86,7 @@ submitButton.addEventListener('click', () => {
     const correctAnswer = clues[currentClueIndex].answer.toLowerCase();
 
     if (userAnswer === correctAnswer) {
+        playSound(audio.correct);
         feedbackText.textContent = ">>> ACCESS GRANTED <<<";
         feedbackText.style.color = "#9effaf";
 
@@ -72,6 +102,7 @@ submitButton.addEventListener('click', () => {
         }, 1500);
 
     } else {
+        playSound(audio.incorrect);
         feedbackText.textContent = "!!! ACCESS DENIED. SECURITY PROTOCOL ENGAGED !!!";
         feedbackText.style.color = "#ff5a5f";
         answerInput.value = "";
@@ -97,6 +128,9 @@ function displayClue() {
 }
 
 function showFinalPrize() {
+    playSound(audio.reveal);
+    audio.background.volume = 0.1;
+
     clueContainer.style.display = 'none';
     if(lockedStatus) lockedStatus.style.display = 'none';
     finalPrize.style.display = 'block';
