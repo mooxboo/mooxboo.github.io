@@ -53,7 +53,10 @@ const audio = {
 };
 audio.background.loop = true;
 audio.background.volume = 0.3;
-audio.typing.volume = 0.6;
+
+// --- CHANGE #1: We tell the typing sound to loop forever ---
+audio.typing.loop = true; 
+audio.typing.volume = 0.6; // You can adjust this volume
 
 function unlockAllAudio() {
     if (hasAudioBeenUnlocked) return; 
@@ -86,24 +89,18 @@ const muteButton = document.getElementById('mute-button');
 const typewriterElements = document.querySelectorAll('.typewriter');
 const typingSpeed = 40;
 
-
-// ▼▼▼ THIS IS THE NEW, CORRECTED FUNCTION ▼▼▼
 function playSound(sound) {
-    if (isMuted) return;
-
-    // For the typing sound, we MUST create a clone to allow rapid, overlapping playback.
-    if (sound === audio.typing) {
-        const clone = sound.cloneNode();
-        clone.volume = sound.volume; // Clones don't inherit volume, so we set it manually.
-        clone.play();
-    } else {
-        // For other sounds, we can just rewind and play the original.
+    if (!isMuted) {
         sound.currentTime = 0;
         sound.play().catch(e => {});
     }
 }
-// ▲▲▲ THIS IS THE NEW, CORRECTED FUNCTION ▲▲▲
 
+// --- CHANGE #2: A new, simple function to stop sounds ---
+function stopSound(sound) {
+    sound.pause();
+    sound.currentTime = 0; // Rewind it for the next time it might be used
+}
 
 muteButton.addEventListener('click', () => {
     isMuted = !isMuted;
@@ -176,11 +173,10 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
+// --- CHANGE #3: The typewriter NO LONGER plays any sound ---
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
-        // This line now calls our new, smarter playSound function.
-        playSound(audio.typing);
-
+        // NO MORE SOUND HERE!
         if (text.substring(index, index + 1) === '\n') {
             element.innerHTML += '<br>';
         } else {
@@ -194,7 +190,14 @@ function typeWriter(element, text, index, onComplete) {
     }
 }
 
+// --- CHANGE #4: This function is now the master controller for the typing sound ---
 function startTypingSequence(messageIndex) {
+    // If this is the VERY FIRST message, start the looping sound.
+    if (messageIndex === 0) {
+        playSound(audio.typing);
+    }
+
+    // Check if there are more messages to type
     if (messageIndex < typewriterElements.length && messageIndex < messagesToType.length) {
         const currentElement = typewriterElements[messageIndex];
         const currentText = messagesToType[messageIndex];
@@ -205,6 +208,9 @@ function startTypingSequence(messageIndex) {
             currentElement.classList.remove('typing');
             startTypingSequence(messageIndex + 1);
         });
+    } else {
+        // If there are NO MORE messages, stop the looping sound.
+        stopSound(audio.typing);
     }
 }
 
@@ -219,7 +225,6 @@ function showFinalPrize() {
     progressBar.style.width = '100%';
     progressText.textContent = 'Decryption Complete!';
 
-    // The small delay here is still good practice.
     setTimeout(() => {
         startTypingSequence(0);
     }, 300);
