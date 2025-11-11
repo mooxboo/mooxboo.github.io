@@ -36,11 +36,13 @@ const messagesToType = [
     "Happy Anniversary, my love. Ooooooh!",
     "Eternally Grateful,\nYour Moo"
 ];
+// --- END CUSTOMIZE SECTION ---
+
 
 // --- No need to edit below this line ---
 let currentClueIndex = -1;
 let isMuted = false;
-let hasAudioBeenUnlocked = false; // <-- NEW: Flag to track if audio is ready
+let hasAudioBeenUnlocked = false; 
 
 const audio = {
     background: new Audio('assets/background-music.mp3'),
@@ -53,17 +55,14 @@ audio.background.loop = true;
 audio.background.volume = 0.3;
 audio.typing.volume = 0.6;
 
-// --- NEW FUNCTION: Unlocks all sounds on first user click ---
 function unlockAllAudio() {
-    if (hasAudioBeenUnlocked) return; // Only run this function once
+    if (hasAudioBeenUnlocked) return; 
 
-    // This is a trick to get all sounds ready to play
     for (const sound of Object.values(audio)) {
-        sound.play().catch(() => {}); // Try to play...
-        sound.pause();                // ...and immediately pause.
+        sound.play().catch(() => {});
+        sound.pause();              
     }
 
-    // Now safely play the background music
     if (audio.background.paused) {
         audio.background.play().catch(() => {});
     }
@@ -102,10 +101,7 @@ muteButton.addEventListener('click', () => {
     }
 });
 
-// The old body click listener has been removed, as unlockAllAudio() handles it now.
-
 submitButton.addEventListener('click', () => {
-    // --- MODIFIED: Unlock audio on the very first click ---
     if (!hasAudioBeenUnlocked) {
         unlockAllAudio();
     }
@@ -168,10 +164,8 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
-// --- MODIFIED: This typewriter function is simpler and more reliable ---
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
-        // This will now play the sound for EVERY character.
         playSound(audio.typing);
 
         if (text.substring(index, index + 1) === '\n') {
@@ -201,6 +195,7 @@ function startTypingSequence(messageIndex) {
     }
 }
 
+// THIS IS THE FINAL CORRECTED FUNCTION
 function showFinalPrize() {
     playSound(audio.reveal);
     audio.background.volume = 0.1;
@@ -212,7 +207,10 @@ function showFinalPrize() {
     progressBar.style.width = '100%';
     progressText.textContent = 'Decryption Complete!';
 
-    startTypingSequence(0);
+    // This delay is the crucial fix
+    setTimeout(() => {
+        startTypingSequence(0);
+    }, 300); // 0.3 second delay
 
     setTimeout(() => {
         confetti({
