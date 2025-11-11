@@ -86,12 +86,24 @@ const muteButton = document.getElementById('mute-button');
 const typewriterElements = document.querySelectorAll('.typewriter');
 const typingSpeed = 40;
 
+
+// ▼▼▼ THIS IS THE NEW, CORRECTED FUNCTION ▼▼▼
 function playSound(sound) {
-    if (!isMuted) {
+    if (isMuted) return;
+
+    // For the typing sound, we MUST create a clone to allow rapid, overlapping playback.
+    if (sound === audio.typing) {
+        const clone = sound.cloneNode();
+        clone.volume = sound.volume; // Clones don't inherit volume, so we set it manually.
+        clone.play();
+    } else {
+        // For other sounds, we can just rewind and play the original.
         sound.currentTime = 0;
         sound.play().catch(e => {});
     }
 }
+// ▲▲▲ THIS IS THE NEW, CORRECTED FUNCTION ▲▲▲
+
 
 muteButton.addEventListener('click', () => {
     isMuted = !isMuted;
@@ -166,6 +178,7 @@ function displayClue() {
 
 function typeWriter(element, text, index, onComplete) {
     if (index < text.length) {
+        // This line now calls our new, smarter playSound function.
         playSound(audio.typing);
 
         if (text.substring(index, index + 1) === '\n') {
@@ -195,7 +208,6 @@ function startTypingSequence(messageIndex) {
     }
 }
 
-// THIS IS THE FINAL CORRECTED FUNCTION
 function showFinalPrize() {
     playSound(audio.reveal);
     audio.background.volume = 0.1;
@@ -207,10 +219,10 @@ function showFinalPrize() {
     progressBar.style.width = '100%';
     progressText.textContent = 'Decryption Complete!';
 
-    // This delay is the crucial fix
+    // The small delay here is still good practice.
     setTimeout(() => {
         startTypingSequence(0);
-    }, 300); // 0.3 second delay
+    }, 300);
 
     setTimeout(() => {
         confetti({
