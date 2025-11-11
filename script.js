@@ -40,8 +40,9 @@ const messagesToType = [
 
 
 // --- No need to edit below this line ---
-let currentClueIndex = -1; 
+let currentClueIndex = -1;
 let isMuted = false;
+let hasAudioBeenUnlocked = false; // <-- NEW: Flag to track if audio is ready
 
 const audio = {
     background: new Audio('assets/background-music.mp3'),
@@ -53,6 +54,25 @@ const audio = {
 audio.background.loop = true;
 audio.background.volume = 0.3;
 audio.typing.volume = 0.6;
+
+// --- NEW FUNCTION: Unlocks all sounds on first user click ---
+function unlockAllAudio() {
+    if (hasAudioBeenUnlocked) return; // Only run this function once
+
+    // This is a trick to get all sounds ready to play
+    for (const sound of Object.values(audio)) {
+        sound.play().catch(() => {}); // Try to play...
+        sound.pause();                // ...and immediately pause.
+    }
+
+    // Now safely play the background music
+    if (audio.background.paused) {
+        audio.background.play().catch(() => {});
+    }
+
+    hasAudioBeenUnlocked = true;
+    console.log("All audio sources have been unlocked.");
+}
 
 const clueContainer = document.getElementById('clue-container');
 const finalPrize = document.getElementById('final-prize');
@@ -84,14 +104,14 @@ muteButton.addEventListener('click', () => {
     }
 });
 
-document.body.addEventListener('click', () => {
-    if (audio.background.paused) {
-        audio.background.play().catch(e => console.error("Autoplay was prevented.", e));
-    }
-}, { once: true });
-
+// The old body click listener has been removed, as unlockAllAudio() handles it now.
 
 submitButton.addEventListener('click', () => {
+    // --- MODIFIED: Unlock audio on the very first click ---
+    if (!hasAudioBeenUnlocked) {
+        unlockAllAudio();
+    }
+
     if (currentClueIndex === -1) {
         currentClueIndex++;
         displayClue();
@@ -150,15 +170,12 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
+// --- MODIFIED: This typewriter function is simpler and more reliable ---
 function typeWriter(element, text, index, onComplete) {
-    // THIS 'if' IS THE KEY:
-    // It only runs if there are still characters left to type.
     if (index < text.length) {
+        // This will now play the sound for EVERY character.
+        playSound(audio.typing);
 
-        // The sound plays here...
-        playSound(audio.typing); 
-
-        // ...and a character is typed here.
         if (text.substring(index, index + 1) === '\n') {
             element.innerHTML += '<br>';
         } else {
@@ -166,17 +183,9 @@ function typeWriter(element, text, index, onComplete) {
         }
 
         index++;
-        // It then sets a timer to run this function again.
         setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
-
     } else if (onComplete) {
-        // THIS 'else' RUNS WHEN THE TYPING IS FINISHED:
-        // (because index is no longer less than text.length)
-
-        // Notice there is NO `playSound()` here.
-        // The sound stops automatically.
-
-        onComplete(); // This starts the next line of typing, or does nothing if it's the last line.
+        onComplete();
     }
 }
 
