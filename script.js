@@ -150,14 +150,15 @@ function displayClue() {
     submitButton.textContent = "Decrypt";
 }
 
-// THIS IS THE CORRECTED TYPEWRITER FUNCTION
 function typeWriter(element, text, index, onComplete) {
+    // THIS 'if' IS THE KEY:
+    // It only runs if there are still characters left to type.
     if (index < text.length) {
-        // Play sound on the first character of a line, then randomly
-        if (index === 0 || Math.random() < 0.35) {
-            playSound(audio.typing);
-        }
 
+        // The sound plays here...
+        playSound(audio.typing); 
+
+        // ...and a character is typed here.
         if (text.substring(index, index + 1) === '\n') {
             element.innerHTML += '<br>';
         } else {
@@ -165,9 +166,17 @@ function typeWriter(element, text, index, onComplete) {
         }
 
         index++;
+        // It then sets a timer to run this function again.
         setTimeout(() => typeWriter(element, text, index, onComplete), typingSpeed);
+
     } else if (onComplete) {
-        onComplete();
+        // THIS 'else' RUNS WHEN THE TYPING IS FINISHED:
+        // (because index is no longer less than text.length)
+
+        // Notice there is NO `playSound()` here.
+        // The sound stops automatically.
+
+        onComplete(); // This starts the next line of typing, or does nothing if it's the last line.
     }
 }
 
