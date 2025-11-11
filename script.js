@@ -27,14 +27,15 @@ const clues = [
     }
 ];
 
+// --- OPTION 1: Heartfelt & Thematic ---
 const messagesToType = [
     "My Dearest Boo Boo Sayang,",
-    "If you're reading this, it means you've successfully decrypted the log file. But I never had a single doubt. After all, you've always been the only one who could decode my heart.",
-    "The last two years feel like the greatest mission I've ever been on. Our official log file began on 30 September 2023, and since then, every entry has been an adventure. From analyzing aquatic species in Palembang to debriefing with our plush canine officer, Corcor, every moment with you is a memory I've logged and cherished.",
-    "But the most important data point, the one that holds my universe together, is you. Before you, I was just Agent Moo, flying solo. Now, I have my co-pilot, my navigator, my everything. You are my gravity. With you, even just watching the Kaciw squadron feels like discovering a new galaxy.",
-    "I can't wait to see what missions the coming years have in store for us. More adventures, more laughter, and more just being with you. You have been chosen... by me. And I will choose you every single day, forever.",
-    "Happy Anniversary, my love. Ooooooh!",
-    "Eternally Grateful,\nYour Moo"
+    "You've done it. Log file decrypted. I knew you would. From the moment of 'First Contact' on Stardate 30.09.2023, you've always been the only one who could read my encrypted heart.",
+    "These last two years have been our own great cosmic adventure. Our mission logs are filled with more than just data; they're filled with laughter. From charting the Palembang sector for a 'Pindang Bandeng' to sharing command with our furry morale officer, Corcor, every single entry is a star I wouldn't trade for anything.",
+    "Before our flight paths crossed, I was just Agent Moo, drifting solo through an empty starfield. You didn't just join my mission; you became its destination. You are my gravity, the center of my universe, pulling me home no matter how far I roam.",
+    "They say space is infinite, but I can't wait to explore every single corner of it with you. More missions with the Kaciw squadron, more discovering new galaxies from our command post at Kost BMI, more everything... as long as you're my co-pilot.",
+    "Happy Second Anniversary, my chosen one. I love you to infinity... and beyond.",
+    "Yours, always, through every stardate,\nAgent Moo"
 ];
 // --- END CUSTOMIZE SECTION ---
 
