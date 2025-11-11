@@ -36,8 +36,6 @@ const messagesToType = [
     "Happy Anniversary, my love. Ooooooh!",
     "Eternally Grateful,\nYour Moo"
 ];
-// --- END CUSTOMIZE SECTION ---
-
 
 // --- No need to edit below this line ---
 let currentClueIndex = -1;
