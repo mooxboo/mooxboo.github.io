@@ -1,67 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Star Command: Anniversary Protocol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Pesan Untuk Boo Boo Sayang...</title>
 
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- Menghubungkan ke file CSS -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- Menambahkan Font dari Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="cosmic-background">
+<body>
 
-    <div id="container">
-        <button id="mute-button">🔇</button>
-        <img src="assets/alien.png" alt="Toy Story Alien" id="alien-mascot">
+<div class="container">
+    <!-- Tampilan Awal Permintaan Maaf -->
+    <div id="initial-view">
+        <!-- GANTI JUDUL INI AGAR NYAMBUNG DENGAN BUNGA -->
+        <h1>Semoga sayang suka bunganya... 💐</h1>
 
-        <h1>Star Command Protocol</h1>
-        <h2 class="status-locked">Anniversary Log File: LOCKED</h2>
+        <img src="https://tenor.com/view/megan-soo-dog-meme-funny-dog-meme-gif-14413441628212659223" alt="Puppy Sedih" class="gif">
 
-        <div id="progress-wrapper" style="display: none;">
-            <div id="progress-bar"></div>
-            <p id="progress-text">0% Decrypted</p>
-        </div>
+        <!-- GANTI PESAN PEMBUKA INI -->
+        <p>Itu cuma sebagian kecil dari cara moo bilang maaf. Tapi ada yang lebih penting yang mau moo sampaikan di sini.</p>
 
-        <div id="clue-container">
-            <img id="clue-image" src="" alt="Archived Visual Data" style="display: none;">
-            <p id="clue-text">Welcome, Chosen One. To decrypt the anniversary file, you must pass 5 security challenges. Click to begin.</p>
-            <input type="text" id="answer-input" style="display:none;" placeholder="> Enter decryption key...">
-            <button id="submit-button">Initiate Protocol</button>
-            <p id="feedback-text"></p>
-        </div>
+        <!-- GANTI PESAN PERMINTAAN MAAFMU DI SINI -->
+        <p>Moo tahu moo salah minggu lalu karena <strong>ga dengerin sayang dengan baik dan juga ga minta penjelasan dari sayang kenapa sayang marahnya</strong>. Moo bener-bener nyesel dan kangen banget sama boo boo sayang. Moo janji nda akan ngulangin lagi.</p>
 
-        <div id="final-prize" style="display:none;">
-            <h2>DECRYPTION COMPLETE</h2>
-            <h3 class="status-unlocked">Log File UNLOCKED. Displaying contents...</h3>
-        
-            <img src="assets/final-photo.jpg" alt="Our Favorite Moment" id="final-photo">
-        
-            <div class="message-box">
-                <!-- This header part will appear INSTANTLY and SILENTLY -->
-                <p><strong>To:</strong> The Chosen One (My Boo Boo Sayang)</p>
-                <p><strong>From:</strong> Agent Moo</p>
-                <p><strong>Stardate:</strong> Our Second Anniversary</p>
-                <p><strong>Subject:</strong> Mission Debrief: The First Two Years</p>
-                <br>
-        
-                <!-- The typewriter will start on this FIRST empty paragraph -->
-                <p class="typewriter"></p>
-        
-                <!-- The typewriter will continue on the following paragraphs -->
-                <p class="typewriter"></p>
-                <p class="typewriter"></p>
-                <p class="typewriter"></p>
-                <p class="typewriter"></p>
-                <br>
-                <p class="typewriter"></p>
-                <p class="typewriter"></p>
-            </div>
+        <p class="question">Sayang mau nda maafin moo?</p>
+
+        <div class="buttons">
+            <button id="yes-btn">IYA, aku maafin</button>
+            <button id="no-btn">NGGAK!</button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Tampilan Setelah Dimaafin -->
+    <div id="thank-you-view">
+        <h1>YAY! Maacii banyak, Sayang! 🥰</h1>
+        <img src="https://tenor.com/view/dance-golden-retriever-welcome-enjoy-happy-birthday-gif-10539811384040375071" alt="Gembira" class="gif">
+
+        <!-- GANTI PESAN AJAKANMU DI SINI -->
+        <p>Moo hepi poll! Moo janji bakal jadi pacar yang lebih baik buat sayang. Sebagai tanda maaf, nanti malam kita <strong>maam enak di luar</strong> !!</p>
+        <p>I love you to infinity and beyond Boo Boo Sayang!</p>
+    </div>
+</div>
+
+<!-- Menghubungkan ke file JavaScript (di akhir body) -->
+<script src="script.js"></script>
 </body>
 </html>
-
