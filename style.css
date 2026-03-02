@@ -1,245 +1,120 @@
+/* Variabel Warna untuk kemudahan kustomisasi */
 :root {
-    --electric-purple: #be00ff;
-    --galaxy-teal: #00f6ff;
-    --starlight-white: #e0e0e0;
-    --warning-red: #ff5a5f;
-    --dark-space: #000000;
+    --bg-color: #fde2e4;
+    --card-color: #fff;
+    --text-color: #333;
+    --primary-color: #ff7f9f;
+    --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-.cosmic-background {
-    background-color: var(--dark-space);
-    background-image: url('assets/nebula.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100dvh;
-    padding: calc(20px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom)) 20px;
-    box-sizing: border-box;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 16px; 
+    min-height: 100vh;
+    color: var(--text-color);
 }
 
-#container {
-    background: rgba(10, 15, 25, 0.7);
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(var(--electric-purple), 0.3);
-    padding: 30px 40px;
+.container {
+    background-color: var(--card-color);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
     text-align: center;
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
-    color: var(--starlight-white);
-
-    /* THIS IS THE CRITICAL FIX */
-    position: relative; 
-}
-
-h1, h2, h3 {
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 8px rgba(var(--galaxy-teal), 0.5);
-    margin: 5px 0 10px 0;
-}
-h1 {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: var(--galaxy-teal);
-}
-.status-locked {
-    color: var(--warning-red);
-    animation: pulse 2s infinite;
-}
-.status-unlocked {
-    color: #9effaf;
-}
-
-#progress-wrapper {
+    transition: all 0.3s ease;
+    /* Penting agar tombol 'No' tidak lari keluar container */
     position: relative;
-    width: 90%;
-    height: 30px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    margin: 25px auto;
     overflow: hidden;
 }
 
-#progress-bar {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--electric-purple), var(--galaxy-teal));
-    border-radius: 50px;
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
-    animation: glowing-bar 2s ease-in-out infinite;
+h1 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 10px;
 }
 
-#progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
-    color: var(--starlight-white);
-    font-size: 0.9em;
-    font-family: 'Orbitron', sans-serif;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    z-index: 2;
-    white-space: nowrap;
-}
-
-#clue-text {
+p {
     font-size: 1.1em;
-    min-height: 40px;
     line-height: 1.6;
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
-#answer-input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-    color: var(--starlight-white);
-    font-family: 'Share Tech Mono', monospace;
+p.question {
+    font-weight: 700;
     font-size: 1.2em;
-    width: 90%;
-    padding: 10px;
-    margin: 35px auto 25px;
-    text-align: center;
+}
+
+.gif {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 20px auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-#answer-input::placeholder {
-    text-align: center;
-    opacity: 0.7;
-}
-
-#answer-input:focus {
-    outline: none;
-    border-bottom-color: var(--galaxy-teal);
-    box-shadow: 0 5px 15px -5px rgba(var(--galaxy-teal), 0.4);
-}
-
-#submit-button {
-    background: linear-gradient(45deg, var(--electric-purple), var(--galaxy-teal));
+#yes-btn {
+    background-color: var(--primary-color);
     color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 50px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1em;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(var(--electric-purple), 0.5);
-    letter-spacing: 1px;
+}
+
+#yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 127, 159, 0.4);
+}
+
+#no-btn {
+    background-color: #ccc;
+    color: #555;
+    /* Posisi awal relatif */
     position: relative;
-    z-index: 10;
-}
-#submit-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 20px rgba(var(--galaxy-teal), 0.6);
 }
 
-#feedback-text {
-    margin-top: 15px;
-    font-weight: bold;
-    min-height: 20px;
-    font-size: 1.1em;
+#thank-you-view {
+    display: none; /* Sembunyikan tampilan ini pada awalnya */
 }
 
-#alien-mascot {
-    width: 150px;
-    margin-bottom: 10px;
-    animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 10px rgba(var(--galaxy-teal), 0.6));
-}
-
-#clue-image, #final-photo {
-    max-width: 90%;
-    max-height: 300px;
-    width: auto;
-    height: auto;
-    border: 2px solid var(--galaxy-teal);
-    border-radius: 8px;
-    margin: 0 auto 20px auto;
-    display: block;
-    box-shadow: 0 0 15px rgba(var(--galaxy-teal), 0.3);
-    animation: fadeIn 1s ease-in-out;
-}
-#final-photo {
-    border-color: var(--electric-purple);
-    box-shadow: 0 0 20px rgba(var(--electric-purple), 0.5);
-}
-
-.message-box {
-    background: rgba(0,0,0,0.3);
-    border-left: 3px solid var(--electric-purple);
-    text-align: left;
-    padding: 20px;
-    margin-top: 25px;
-    border-radius: 8px;
-    line-height: 1.7;
-    font-size: 1.05em;
-}
-
-#mute-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.3s;
-    z-index: 100;
-}
-#mute-button:hover {
-    opacity: 1;
-}
-
-.typing::after {
-    content: '_';
-    font-weight: bold;
-    animation: blink 1s step-end infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.6; }
-    100% { opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes glowing-bar {
-    0% {
-        box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
+/* Desain Responsif untuk HP */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
     }
-    50% {
-        box-shadow: 0 0 15px var(--galaxy-teal), 0 0 25px var(--galaxy-teal);
+    h1 {
+        font-size: 1.5em;
     }
-    100% {
-        box-shadow: 0 0 5px var(--galaxy-teal), 0 0 10px var(--galaxy-teal);
+    p {
+        font-size: 1em;
     }
-}
-
-@keyframes blink {
-    from, to {
-        color: transparent;
+    .gif {
+        width: 150px;
+        height: 150px;
     }
-    50% {
-        color: var(--starlight-white);
+    button {
+        padding: 10px 20px;
+        font-size: 0.9em;
     }
 }
